@@ -1,0 +1,68 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+#Admin
+POST    /createAdmin/:Admin          controllers.AdminController.create(Admin: String)
+#PUT     /updateAdmin/:adms          controllers.AdminController.update(adms: String)
+#DELETE  /deleteAdmin/:id            controllers.AdminController.delete(id: String)
+#GET     /readAdmin/:id              controllers.AdminController.read(id: String)
+
+#Channel
+POST    /createChannel/:Channel   controllers.ChannelController.create(Channel: String)
+#PUT     /updateChannel/:id/:chan    controllers.ChannelController.update(id: String, chan: String)
+#DELETE  /deleteChannel/:id          controllers.ChannelController.delete(id: String)
+#GET     /readChannel/:id/:name      controllers.ChannelController.read(id: String, name: String)
+
+#Conversation
+POST    /createConversation/:Conversation controllers.ConversationController.create(Conversation: String)
+#PUT     /updateConversation/:chan/:id   controllers.ConversationController.update(chan: String, id: String)
+#DELETE  /deleteConversation/:id         controllers.ConversationController.delete(id: String)
+#GET     /readConversation/:id/:name     controllers.ConversationController.read(id: String, name: String)
+
+#FacilitatorType
+POST    /createFacilitatorType/:FacilitatorType controllers.FacilitatorTypeController.create(FacilitatorType: String)
+#PUT     /updateFacilitatorType/:chan/:id   controllers.FacilitatorTypeController.update(chan: String, id: String)
+#DELETE  /deleteFacilitatorType/:id         controllers.FacilitatorTypeController.delete(id: String)
+#GET     /readFacilitatorType/:id/:description controllers.FacilitatorTypeController.read(id: String, description: String)
+
+#Members
+POST    /createMembers/:Members    controllers.MembersController.create(Members: String)
+#PUT     /updateMembers/:chan        controllers.MembersController.update(chan: String)
+#DELETE  /deleteMembers/:id          controllers.MembersController.delete(id: String)
+#GET     /readMembers/:id/:otherid   controllers.MembersController.read(id: String, otherid: String)
+
+#Person
+POST    /createPerson/:Person     controllers.PersonController.create(Person: String)
+#PUT     /updatePerson/:chan/:id         controllers.PersonController.update(chan: String, id: String)
+#DELETE  /deletePerson/:id           controllers.PersonController.delete(id: String)
+#GET     /readPerson/:id/:name       controllers.PersonController.read(id: String, name: String)
+
+#Ratings
+POST    /createRatings/:Ratings    controllers.RatingsController.create(Ratings: String)
+#PUT     /updateRatings/:chan/:id     controllers.RatingsController.update(chan: String, id: String)
+#DELETE  /deleteRatings/:id           controllers.RatingsController.delete(id: String)
+#GET     /read/:id/:otherid           controllers.RatingsController.read(id: String, otherid: String)
+
+#Role
+POST    /createRole/:Role             controllers.RoleController.create(Role: String)
+#PUT     /updateRole/:chan/:id        controllers.RoleController.update(chan: String, id: String)
+#DELETE  /deleteRole/:id              controllers.RoleController.delete(id: String)
+#GET     /readRole/:id/:otherid       controllers.RoleController.read(id: String, otherid: String)
+
+#Speciality
+POST    /createSpeciality/:Speciality controllers.SpecialityController.create(Speciality: String)
+#PUT     /updateSpeciality/:chan/:id  controllers.SpecialityController.update(chan: String, id: String)
+#DELETE  /deleteSpeciality/:id        controllers.SpecialityController.delete(id: String)
+#GET     /readSpeciality/:id/:otherid controllers.SpecialityController.read(id: String, otherid: String)
+
+#Sponsor
+POST    /createSponsor/:Sponsor controllers.SponsorController.create(Sponsor: String)
+#PUT     /updateSponsor/:chan/:id     controllers.SponsorController.update(chan: String, id: String)
+#DELETE  /deleteSponsor/:id           controllers.SponsorController.delete(id: String)
+#GET     /readSponsor/:id/:otherid    controllers.SponsorController.read(id: String, otherid: String )
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
