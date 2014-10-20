@@ -22,29 +22,29 @@ object Application extends Controller {
 
 
   def index = Action {
-    println(" ")
-    println(" All is well \n")
+   // println(" ")
+    //println(" All is well \n")
 
     //Count the encounters
 
-    val test: getUserHistoryInt = new getUserHistoryImpl
+    //val test: getUserHistoryInt = new getUserHistoryImpl
 
-    encoList = test.counter(5)
+    //encoList = test.counter(5)
 
 
-    print(" Number of facilitators: " + encoList.size + " \n")
-    for ( i <- encoList ) print(" MID: " + i.memberId + " FID: " + i.facilitatorId + " Start time: " + i.startTime + " End time: " + i.endTime + "\n\n")
+   // print(" Number of facilitators: " + encoList.size + " \n")
+   // for ( i <- encoList ) print(" MID: " + i.memberId + " FID: " + i.facilitatorId + " Start time: " + i.startTime + " End time: " + i.endTime + "\n\n")
 
     //Get messages by specific date
 
-    val testtwo: getMessageByDateInt = new getMessageByDateImpl
+   // val testtwo: getMessageByDateInt = new getMessageByDateImpl
 
-    convoList = testtwo.getMessage("23 September 2014 12:00", 5)
+  //  convoList = testtwo.getMessage("23 September 2014 12:00", 5)
 
 
-    print(" Print Messages \n")
+   // print(" Print Messages \n")
 
-    for ( z <- convoList ) println(" Messages: " + z.message + " FID: " + z.facilitatorId + "\n")
+    //for ( z <- convoList ) println(" Messages: " + z.message + " FID: " + z.facilitatorId + "\n")
 
 
 
@@ -53,27 +53,27 @@ object Application extends Controller {
 
     //get and list all facilitators
 
-    val testthree: getAllFacilitatorsInt = new getAllFacilitatorsImpl
+    //val testthree: getAllFacilitatorsInt = new getAllFacilitatorsImpl
 
-    facList = testthree.getAll()
+   // facList = testthree.getAll()
     //newL = testthree.changeType(facList)
 
 
 
-    print( " The size iss " + facList.size + "\n\n" )
-    for ( j <- facList ) println(  " Name: " + j.firstname + " Surname: " + j.surname + " Email: " + j.password  + "\n" )
+   // print( " The size iss " + facList.size + "\n\n" )
+   // for ( j <- facList ) println(  " Name: " + j.firstname + " Surname: " + j.surname + " Email: " + j.password  + "\n" )
 
 
     //get specific facilitator type
 
-    val testfour: getFacilitatorTypeInt = new getFacilitatorTypeImpl
+    //val testfour: getFacilitatorTypeInt = new getFacilitatorTypeImpl
 
-    facList = testfour.getType("Relationship")
+   // facList = testfour.getType("Relationship")
 
 
-    print( " Size: " + facList.size + "\n")
+   // print( " Size: " + facList.size + "\n")
 
-    for( d <- facList ) print( " Name:" + d.firstname + " Email: " + d.password + "\n" )
+   // for( d <- facList ) print( " Name:" + d.firstname + " Email: " + d.password + "\n" )
 
     Ok(views.html.index("Your new application is ready."))
  }

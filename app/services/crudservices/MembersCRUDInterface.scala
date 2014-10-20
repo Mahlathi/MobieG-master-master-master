@@ -10,7 +10,7 @@ import repository.MembersRepository.MembersRepository
 trait MembersCRUDInterface {
 
   def create( mem: Members, fac: Facilitator ): Members
-  def read(others: Long, id: Long): List[MembersRepository#TableElementType]
+  def read(id: Long): List[MembersRepository#TableElementType]
   def update( desc: Long, id: Long)
   def delete(id: Long)
 

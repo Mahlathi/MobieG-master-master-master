@@ -56,9 +56,7 @@ class ChannelCRUD extends ChannelCRUDInterface {
 
       channel.filter(_.id === id).delete
       facilitator.filter(_.id === id).delete
-      channel foreach { case (chann: Channel) =>
 
-      }
     }
   }
 }

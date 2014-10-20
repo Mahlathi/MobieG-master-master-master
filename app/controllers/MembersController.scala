@@ -66,11 +66,11 @@ object MembersController extends Controller{
     Ok("Deleted")
   }
 
-  def read(id: Long, otherid: Long ) = Action
+  def read(id: Long) = Action
   {
     val obj: MembersCRUDInterface = new MembersCRUD
     //val admin = chanModel.getDomain()
-    val res = obj.read(otherid, id)
+    val res = obj.read(id)
     val json = Json.toJson(res)
     Ok(json)
   }

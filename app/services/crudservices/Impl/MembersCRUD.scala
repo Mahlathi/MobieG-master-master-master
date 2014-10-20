@@ -26,11 +26,11 @@ class MembersCRUD extends MembersCRUDInterface{
     mem
   }
 
-  override def read(others: Long, id: Long): List[MembersRepository#TableElementType] = {
+  override def read(id: Long): List[MembersRepository#TableElementType] = {
     Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
 
       val repo = memrepo.list
-      val input = repo.filter( p=> p.id == id && p.facilitatorId == others)
+      val input = repo.filter( p=> p.id == id )
       input
     }
   }

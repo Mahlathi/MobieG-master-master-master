@@ -6,63 +6,69 @@
 GET     /                           controllers.Application.index
 #Admin
 POST    /createAdmin/:Admin          controllers.AdminController.create(Admin: String)
-#PUT     /updateAdmin/:adms          controllers.AdminController.update(adms: String)
-#DELETE  /deleteAdmin/:id            controllers.AdminController.delete(id: String)
-#GET     /readAdmin/:id              controllers.AdminController.read(id: String)
+PUT     /updateAdmin/:Admin          controllers.AdminController.update(Admin: String)
+DELETE  /deleteAdmin/:id            controllers.AdminController.delete(id: Long)
+GET     /readAdmin/:id              controllers.AdminController.read(id: Long)
 
 #Channel
 POST    /createChannel/:Channel   controllers.ChannelController.create(Channel: String)
-#PUT     /updateChannel/:id/:chan    controllers.ChannelController.update(id: String, chan: String)
-#DELETE  /deleteChannel/:id          controllers.ChannelController.delete(id: String)
-#GET     /readChannel/:id/:name      controllers.ChannelController.read(id: String, name: String)
+PUT     /updateChannel/:Channel    controllers.ChannelController.update(Channel: String)
+DELETE  /deleteChannel/:id          controllers.ChannelController.delete(id: Long)
+GET     /readChannel/:id      controllers.ChannelController.read(id: Long)
 
 #Conversation
 POST    /createConversation/:Conversation controllers.ConversationController.create(Conversation: String)
-#PUT     /updateConversation/:chan/:id   controllers.ConversationController.update(chan: String, id: String)
-#DELETE  /deleteConversation/:id         controllers.ConversationController.delete(id: String)
-#GET     /readConversation/:id/:name     controllers.ConversationController.read(id: String, name: String)
+PUT     /updateConversation/:Conversation   controllers.ConversationController.update(Conversation: String)
+DELETE  /deleteConversation/:id         controllers.ConversationController.delete(id: Long)
+GET     /readConversation/:id    controllers.ConversationController.read(id: Long)
 
 #FacilitatorType
 POST    /createFacilitatorType/:FacilitatorType controllers.FacilitatorTypeController.create(FacilitatorType: String)
-#PUT     /updateFacilitatorType/:chan/:id   controllers.FacilitatorTypeController.update(chan: String, id: String)
-#DELETE  /deleteFacilitatorType/:id         controllers.FacilitatorTypeController.delete(id: String)
-#GET     /readFacilitatorType/:id/:description controllers.FacilitatorTypeController.read(id: String, description: String)
+PUT     /updateFacilitatorType/:FacilitatorType  controllers.FacilitatorTypeController.update(FacilitatorType: String)
+DELETE  /deleteFacilitatorType/:id         controllers.FacilitatorTypeController.delete(id: Long)
+GET     /readFacilitatorType/:id controllers.FacilitatorTypeController.read(id: Long)
 
 #Members
 POST    /createMembers/:Members    controllers.MembersController.create(Members: String)
-#PUT     /updateMembers/:chan        controllers.MembersController.update(chan: String)
-#DELETE  /deleteMembers/:id          controllers.MembersController.delete(id: String)
-#GET     /readMembers/:id/:otherid   controllers.MembersController.read(id: String, otherid: String)
+PUT     /updateMembers/:Members        controllers.MembersController.update(Members: String)
+DELETE  /deleteMembers/:id          controllers.MembersController.delete(id: Long)
+GET     /readMembers/:id   controllers.MembersController.read(id: Long)
 
 #Person
 POST    /createPerson/:Person     controllers.PersonController.create(Person: String)
-#PUT     /updatePerson/:chan/:id         controllers.PersonController.update(chan: String, id: String)
-#DELETE  /deletePerson/:id           controllers.PersonController.delete(id: String)
-#GET     /readPerson/:id/:name       controllers.PersonController.read(id: String, name: String)
+PUT     /updatePerson/:Person        controllers.PersonController.update(Person: String)
+DELETE  /deletePerson/:id           controllers.PersonController.delete(id: Long)
+GET     /readPerson/:id       controllers.PersonController.read(id: Long)
 
 #Ratings
 POST    /createRatings/:Ratings    controllers.RatingsController.create(Ratings: String)
-#PUT     /updateRatings/:chan/:id     controllers.RatingsController.update(chan: String, id: String)
-#DELETE  /deleteRatings/:id           controllers.RatingsController.delete(id: String)
-#GET     /read/:id/:otherid           controllers.RatingsController.read(id: String, otherid: String)
+PUT     /updateRatings/:Ratings     controllers.RatingsController.update(Ratings: String)
+DELETE  /deleteRatings/:id           controllers.RatingsController.delete(id: Long)
+GET     /readRatings/:id           controllers.RatingsController.read(id: Long)
 
 #Role
 POST    /createRole/:Role             controllers.RoleController.create(Role: String)
-#PUT     /updateRole/:chan/:id        controllers.RoleController.update(chan: String, id: String)
-#DELETE  /deleteRole/:id              controllers.RoleController.delete(id: String)
-#GET     /readRole/:id/:otherid       controllers.RoleController.read(id: String, otherid: String)
+PUT     /updateRole/:Role       controllers.RoleController.update(Role: String)
+DELETE  /deleteRole/:id              controllers.RoleController.delete(id: Long)
+GET     /readRole/:id       controllers.RoleController.read(id: Long)
 
 #Speciality
 POST    /createSpeciality/:Speciality controllers.SpecialityController.create(Speciality: String)
-#PUT     /updateSpeciality/:chan/:id  controllers.SpecialityController.update(chan: String, id: String)
-#DELETE  /deleteSpeciality/:id        controllers.SpecialityController.delete(id: String)
-#GET     /readSpeciality/:id/:otherid controllers.SpecialityController.read(id: String, otherid: String)
+PUT     /updateSpeciality/:Speciality  controllers.SpecialityController.update(Speciality: String)
+DELETE  /deleteSpeciality/:id        controllers.SpecialityController.delete(id: Long)
+GET     /readSpeciality/:id controllers.SpecialityController.read(id: Long)
 
 #Sponsor
 POST    /createSponsor/:Sponsor controllers.SponsorController.create(Sponsor: String)
-#PUT     /updateSponsor/:chan/:id     controllers.SponsorController.update(chan: String, id: String)
-#DELETE  /deleteSponsor/:id           controllers.SponsorController.delete(id: String)
-#GET     /readSponsor/:id/:otherid    controllers.SponsorController.read(id: String, otherid: String )
+PUT     /updateSponsor/:Sponsor    controllers.SponsorController.update(Sponsor: String)
+DELETE  /deleteSponsor/:id           controllers.SponsorController.delete(id: Long)
+GET     /readSponsor/:id    controllers.SponsorController.read(id: Long)
+
+#MembersEncounter
+POST    /createMembersEncounter/:MembersEncounter controllers.MembersEncounterController.create(MembersEncounter: String)
+PUT     /updateMembersEncounter/:MembersEncounter controllers.MembersEncounterController.update(MembersEncounter: String)
+DELETE  /deleteMembersEncounter/:id             controllers.MembersEncounterController.delete(id: Long)
+GET     /readMembersEncounter/:id               controllers.MembersEncounterController.read(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

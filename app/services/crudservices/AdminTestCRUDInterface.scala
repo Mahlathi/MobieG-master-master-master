@@ -9,9 +9,9 @@ import repository.AdminRepository.AdminRepository
 trait AdminTestCRUDInterface {
 
   def create( admin: Admin ): Admin
-  def update(id: Long): Long
-  def read(id: Long): List[AdminRepository#TableElementType]
-  def delete(id: Long): Long
+  def update(id: Long)
+  def read(id: Long): Admin
+  def delete(id: Long)
 
 
 }

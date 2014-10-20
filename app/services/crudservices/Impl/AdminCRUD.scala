@@ -26,31 +26,31 @@ class AdminCRUD extends AdminTestCRUDInterface {
     admin
   }
 
-  override def read(id: Long): List[AdminRepository#TableElementType] = {
+  override def read(id: Long): Admin = {
     Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
 
       val admi = adminrepo.list
 
-      val input = admi.filter( p => p.id == id )
+      val input = admi.filter( p => p.id == id ).head
       input
     }
   }
 
-  override def update(id: Long): Long = {
+  override def update(id: Long)= {
     Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
 
       adminrepo.filter(_.id === id).map(_.id).update(id)
 
     }
-    id
+
   }
 
-  override def delete(id: Long): Long = {
+  override def delete(id: Long) = {
     Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
 
       adminrepo.filter(_.id === id).delete
 
     }
-    id
+
   }
 }

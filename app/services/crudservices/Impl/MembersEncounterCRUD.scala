@@ -2,6 +2,7 @@ package services.crudservices.Impl
 
 import domain.stuff.MemberEncounter
 import repository.MemberEncountersRepository.MemberEncountersRepository
+import services.crudservices.MembersEncounterCRUDint
 
 import scala.slick.lifted.TableQuery
 
@@ -10,26 +11,38 @@ import scala.slick.lifted.TableQuery
  */
 import scala.slick.driver.MySQLDriver.simple._
 
-class MembersEncounterCRUD {
+class MembersEncounterCRUD extends MembersEncounterCRUDint{
   val memEncounterrepo = TableQuery[MemberEncountersRepository]
 
-  Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
-
-    //Creating tables
-    //memEncounterrepo.ddl.create
+  override def create(membersEncounter: MemberEncounter): MemberEncounter = {
+    Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
 
 
-    def create( insertMemEncounter: MemberEncounter ) = {
-        val valo = memEncounterrepo.insert(insertMemEncounter)
+      val valo = memEncounterrepo.insert(membersEncounter)
+    }
+    membersEncounter
+  }
+  override def update(id: Long, desc: String ) = {
+    Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
+      memEncounterrepo.filter(_.id === id).map(_.endTime).update(desc)
+    }
+  }
+
+  override def delete(id: Long)  =
+  {
+    Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
+      memEncounterrepo.filter(_.id === id).delete
+    }
+  }
+
+  override def read(id: Long): List[MemberEncountersRepository#TableElementType] =
+  {
+    Database.forURL("jdbc:mysql://localhost:3306/mysql", driver = "com.mysql.jdbc.Driver", user = "root", password = "admin").withSession { implicit session =>
+        val enc = memEncounterrepo.list
+        val other = enc.filter( p => p.id == id )
+      other
     }
 
-    /*Testing for extraction
-    def Read(others: String, id: String) =
-      memEncounterrepo foreach { case (count: MemberEncounter) =>
-        if (count.id.contentEquals(id)){
-          assert(count.facilitatorId.contentEquals(others))
-        }
-      }
-    Read("83", "61")*/
   }
+
 }

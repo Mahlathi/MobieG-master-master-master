@@ -45,7 +45,7 @@ object AdminController extends Controller {
       val adminObj = AdminModel(admin.id).getDomain()
       val adm: AdminTestCRUDInterface = new AdminCRUD
       val res = adm.update(adminObj.id)
-      val results: Future[Long] = Future{res}
+      val results: Future[String] = Future{res.toString}
       results.map(result => Ok(Json.toJson(result)))
   }
 
