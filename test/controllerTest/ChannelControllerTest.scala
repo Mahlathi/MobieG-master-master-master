@@ -22,11 +22,11 @@ class ChannelControllerTest extends Specification
     {
       "Should create Channel Object" in new WithApplication()
       {
-        val facilitator = FacilitatorModel(0023577)
+        val facilitator = FacilitatorModel(3577)
         val jsonstringf = gson.toJson(facilitator).stripMargin
 
 
-        val role = ChannelModel(12778469,"Sabc1","mzantsi fo sho",0023577)
+        val role = ChannelModel(12778469,"Sabc1","mzantsi fo sho",3577)
         val jsonstring = gson.toJson(role).stripMargin
 
 
@@ -48,4 +48,33 @@ class ChannelControllerTest extends Specification
 
       }
     }
+      "Should Update Channel Object" in new WithApplication {
+      val facilitator = FacilitatorModel(0023577)
+      val jsonstringf = gson.toJson(facilitator).stripMargin
+
+      val model = ChannelModel(1478469,"Sabc3","mzantsi fo sho",2557)
+      val jsonstring = gson.toJson(model).stripMargin
+
+      val json: JsValue = JsObject(Seq
+        (
+            "object" -> JsString(jsonstring),
+            "facobject" -> JsString(jsonstringf)
+        )
+      )
+      val Some(result) = route(FakeRequest(
+      PUT, "/updateChannel/:Channel").withBody(json)
+    )
+      status(result) must equalTo(OK)
+      Logger.debug(" The Result is " + result)
+      contentType(result) must beSome("application/json")
+  }
+  "Should Delete Channel Object" in new WithApplication{
+    val Some(result) = route(FakeRequest(
+      DELETE, "/deleteChannel/:id")
+    )
+    status(result) must equalTo(OK)
+    Logger.debug(" The Result is  " + result)
+    contentType(result) must beSome("text/plain")
+  }
+
 }

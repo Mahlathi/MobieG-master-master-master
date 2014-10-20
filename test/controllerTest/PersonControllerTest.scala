@@ -50,5 +50,33 @@ class PersonControllerTest extends Specification
       contentType(result) must beSome("application/json")
 
     }
+    "Should Update Person Object" in new WithApplication {
+      val facilitator = FacilitatorModel(5)
+      val jsonstringf = gson.toJson(facilitator).stripMargin
+
+      val person = PersonModel(18,"Mr","Joseph","Davds","","Joeph","pasword","emil",66583,40015,5)
+      val jsonstring = gson.toJson(person).stripMargin
+
+      val json: JsValue = JsObject(Seq
+        (
+            "object" -> JsString(jsonstring),
+            "facobject" -> JsString(jsonstringf)
+          )
+      )
+      val Some(result) = route(FakeRequest(
+        PUT, "/updatePerson/:Person").withBody(json)
+      )
+      status(result) must equalTo(OK)
+      Logger.debug(" The Result is " + result)
+      contentType(result) must beSome("application/json")
+    }
+    "Should Delete Person Object" in new WithApplication{
+      val Some(result) = route(FakeRequest(
+        DELETE, "/deletePerson/:id")
+      )
+      status(result) must equalTo(OK)
+      Logger.debug(" The Result is  " + result)
+      contentType(result) must beSome("text/plain")
+    }
   }
 }

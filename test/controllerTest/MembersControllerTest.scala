@@ -45,5 +45,33 @@ class MembersControllerTest extends Specification
         contentType(result) must beSome("application/json")
 
       }
+      "Should Update Members Object" in new WithApplication {
+        val facilitator = FacilitatorModel(25)
+        val jsonstringf = gson.toJson(facilitator).stripMargin
+
+        val model = MembersModel(58,25)
+        val jsonstring = gson.toJson(model).stripMargin
+
+        val json: JsValue = JsObject(Seq
+          (
+              "object" -> JsString(jsonstring),
+              "facobject" -> JsString(jsonstringf)
+            )
+        )
+        val Some(result) = route(FakeRequest(
+          PUT, "/updateMembers/:Members").withBody(json)
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is " + result)
+        contentType(result) must beSome("application/json")
+      }
+      "Should Delete Members Object" in new WithApplication{
+        val Some(result) = route(FakeRequest(
+          DELETE, "/deleteMembers/:id")
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is  " + result)
+        contentType(result) must beSome("text/plain")
+      }
     }
 }

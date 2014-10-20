@@ -28,7 +28,7 @@ class FacilitatorTypeControllerTest extends Specification
 
         val role = FacilitatorTypeModel(44744758,"Observer","Oversees things",333325)
         val jsonstring = gson.toJson(role).stripMargin
-        //val json = Json.parse(jsonstring)
+
 
         val json : JsValue = JsObject(Seq
           (
@@ -45,5 +45,34 @@ class FacilitatorTypeControllerTest extends Specification
         contentType(result) must beSome("application/json")
 
       }
+      "Should Update FacilitatorType Object" in new WithApplication {
+        val facilitator = FacilitatorModel(3325)
+        val jsonstringf = gson.toJson(facilitator).stripMargin
+
+        val model = FacilitatorTypeModel(58,"Observer","Oversees things",3325)
+        val jsonstring = gson.toJson(model).stripMargin
+
+        val json: JsValue = JsObject(Seq
+          (
+              "object" -> JsString(jsonstring),
+              "facobject" -> JsString(jsonstringf)
+            )
+        )
+        val Some(result) = route(FakeRequest(
+          PUT, "/updateFacilitatorType/:FacilitatorType").withBody(json)
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is " + result)
+        contentType(result) must beSome("application/json")
+      }
+      "Should Delete FacilitatorType Object" in new WithApplication{
+        val Some(result) = route(FakeRequest(
+          DELETE, "/deleteFacilitatorType/:id")
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is  " + result)
+        contentType(result) must beSome("text/plain")
+      }
+
     }
 }

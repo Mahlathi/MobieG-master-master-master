@@ -57,5 +57,32 @@ class SponsorControllerTest extends Specification
         contentType(result) must beSome("application/json")
 
       }
+      "Should Update Sponsor Object" in new WithApplication {
+
+        val role = SponsorModel(12,"Joshu","ur goes ","good","uu",8)
+        val jsonstring = gson.toJson(role).stripMargin
+
+        val json: JsValue = JsObject(Seq
+          (
+              "object" -> JsString(jsonstring)
+
+          )
+        )
+
+        val Some(result) = route(FakeRequest(
+          PUT, "/updateSponsor/:Sponsor").withBody(json)
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is " + result)
+        contentType(result) must beSome("application/json")
+      }
+      "Should Delete Sponsor Object" in new WithApplication{
+        val Some(result) = route(FakeRequest(
+          DELETE, "/deleteSponsor/:id")
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is  " + result)
+        contentType(result) must beSome("text/plain")
+      }
     }
 }

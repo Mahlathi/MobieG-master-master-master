@@ -45,6 +45,25 @@ class RoleControllerTest extends Specification
 
         }
       }
+      "Should Update Role Object" in new WithApplication {
+        val role = RoleModel(34014105, "some role name", "this is description things")
+        val jsonstring = gson.toJson(role).stripMargin
+        val json = Json.parse(jsonstring)
+        val Some(result) = route(FakeRequest(
+          PUT, "/updateRole/:Role").withBody(json)
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is " + result)
+        contentType(result) must beSome("application/json")
+      }
+      "Should Delete Role Object" in new WithApplication{
+        val Some(result) = route(FakeRequest(
+          DELETE, "/deleteRole/:id")
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is  " + result)
+        contentType(result) must beSome("text/plain")
+      }
   }
 
 }

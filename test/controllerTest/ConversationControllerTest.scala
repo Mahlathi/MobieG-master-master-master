@@ -47,5 +47,34 @@ class ConversationControllerTest extends Specification
         contentType(result) must beSome("application/json")
 
       }
+      "Should Update Conversation Object" in new WithApplication {
+        val facilitator = FacilitatorModel(0023577)
+        val jsonstringf = gson.toJson(facilitator).stripMargin
+
+        val model = ConversationModel(10257,"East side mate",588)
+        val jsonstring = gson.toJson(model).stripMargin
+
+        val json: JsValue = JsObject(Seq
+          (
+              "object" -> JsString(jsonstring),
+              "facobject" -> JsString(jsonstringf)
+            )
+        )
+        val Some(result) = route(FakeRequest(
+          PUT, "/updateConversation/:Conversation").withBody(json)
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is " + result)
+        contentType(result) must beSome("application/json")
+      }
+      "Should Delete Conversation Object" in new WithApplication{
+        val Some(result) = route(FakeRequest(
+          DELETE, "/deleteConversation/:id")
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is  " + result)
+        contentType(result) must beSome("text/plain")
+      }
+
     }
 }

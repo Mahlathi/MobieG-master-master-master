@@ -46,5 +46,33 @@ class SpecialityControllerTest extends Specification
         contentType(result) must beSome("application/json")
 
       }
+      "Should Update Speciality Object" in new WithApplication {
+        val facilitator = FacilitatorModel(458)
+        val jsonstringf = gson.toJson(facilitator).stripMargin
+
+        val role = SpecialityModel(99871,"Zubenathi","Well versed in all",458)
+        val jsonstring = gson.toJson(role).stripMargin
+
+        val json: JsValue = JsObject(Seq
+          (
+              "object" -> JsString(jsonstring),
+              "facobject" -> JsString(jsonstringf)
+            )
+        )
+        val Some(result) = route(FakeRequest(
+          PUT, "/updateSpeciality/:Speciality").withBody(json)
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is " + result)
+        contentType(result) must beSome("application/json")
+      }
+      "Should Delete Speciality Object" in new WithApplication{
+        val Some(result) = route(FakeRequest(
+          DELETE, "/deleteSpeciality/:id")
+        )
+        status(result) must equalTo(OK)
+        Logger.debug(" The Result is  " + result)
+        contentType(result) must beSome("text/plain")
+      }
     }
 }
